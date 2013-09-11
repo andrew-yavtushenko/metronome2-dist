@@ -1,0 +1,19 @@
+{
+  "name": "bootstrap-stylus",
+  "version": "3.0.0",
+  "main": "stylus/boostrap.styl",
+  "description": "A port of Bootstrap to Stylus",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "components"
+  ],
+  "gitHead": "f7d76724919822f8af7272a1901670097c04c1f7",
+  "readme": "Bootstrap Stylus 3.0.0\n======================\n\nPort of the amazing [Bootstrap 3](https://github.com/twbs/bootstrap) to [Stylus 0.32.1](http://learnboost.github.com/stylus/).\n\nThis version does not have any dependencies on [nib](https://github.com/visionmedia/nib). \n\n( _Note: Bootstrap Stylus must be imported before nib so that Stylus libs are not transpiled as nib mixins_ )\n\nThere might be some slight color differences due to the differences between the color functions in LESS and those in Stylus.\n\n- Compile bootstrap.styl to get the stylesheet\n- Compile theme.styl for the old Twitter theme\n\n## Installing\n\nvia [Bower](https://github.com/bower/bower):\n\n```\n$ bower install bootstrap-stylus\n```\n\n_Note: Legacy 2.3.2 version is kept in [this release](https://github.com/Acquisio/bootstrap-stylus/releases/tag/v2.3.2)_",
+  "readmeFilename": "README.md",
+  "_id": "bootstrap-stylus@3.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Acquisio/bootstrap-stylus.git"
+  }
+}

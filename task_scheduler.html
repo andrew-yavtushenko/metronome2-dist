@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+</head>
+<body>
+<script>
+  (function() {
+  'use strice';
+  window.onload = function() {
+    window.parent.postMessage('scheduler', '*');
+    return window.init = function(source) {
+      var currentTask, postMessage, run, start, stop, taskDuration, timestamp;
+      timestamp = null;
+      taskDuration = null;
+      currentTask = null;
+      now = null;
+      postMessage = window.postMessage;
+      throttleCounter = null;
+      run = function(event) {
+        throttleCounter++;
+        if (throttleCounter == 3) {
+          now = Date.now();
+          if (timestamp < now) {
+            if (source.tasks.length) {
+              currentTask = source.tasks[source.currentTaskIndex];
+              currentTask.start();
+              taskDuration = (source.getTaskDuration(currentTask))|0;
+              timestamp = now + taskDuration;
+              source.moveToNextTask();
+            }
+            if (!source.looped && source.currentTaskIndex === 0) {
+              stop();
+            }
+          }
+          throttleCounter = 0;
+        }
+        postMessage(true, '*');
+      };
+      start = function() {
+        throttleCounter = 0;
+        if (source.tasks.length) {
+          window.addEventListener('message', run, true);
+          postMessage(true, '*');
+        }
+      };
+      stop = function() {
+        if (currentTask.stop) {
+          currentTask.stop();
+        }
+        source.currentTaskIndex = 0;
+        window.removeEventListener('message', run, true);
+      };
+      return {
+        start: start,
+        stop: stop
+      };
+    };
+  };
+
+}).call(this);
+
+/*
+//@ sourceMappingURL=task_scheduler.js.map
+*/
+</script>
+</body>
+</html>
