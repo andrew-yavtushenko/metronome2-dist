@@ -1028,8 +1028,8 @@
       track.start();
     };
     s.stop = function (track) {
-      track.stop();
       console.profileEnd();
+      track.stop();
     };
     s.createTrack = function (name) {
       s.currentTrack = {
